@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -7,6 +9,7 @@ import romantic from "./Routes/romantic.js";
 import best from './Routes/best.js';
 import budget from './Routes/budget.js';
 import register from './Routes/register.js';
+import resetpassmail from "./Routes/sendmail.js";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -20,11 +23,7 @@ app.use("/", romantic);
 app.use("/best", best);
 app.use("/budget", budget);
 app.use("/register", register);
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Authorization, Content-Type, Accept");
-    next();
-  });
+app.use("/reset_pass", resetpassmail);
 
 mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology: true})
     .then(()=> app.listen(port, ()=>{
