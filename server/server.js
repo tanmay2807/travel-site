@@ -10,6 +10,10 @@ import best from './Routes/best.js';
 import budget from './Routes/budget.js';
 import register from './Routes/register.js';
 import resetpassmail from "./Routes/sendmail.js";
+import resetpass from "./Routes/resetpass.js";
+import admindata from "./Routes/admindata.js";
+import deletepost from "./Routes/deletepost.js";
+import editpost from "./Routes/editpost.js";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -24,6 +28,10 @@ app.use("/best", best);
 app.use("/budget", budget);
 app.use("/register", register);
 app.use("/reset_pass", resetpassmail);
+app.use("/reset_pass_confirm", resetpass);
+app.use("/admindata", admindata);
+app.use("/deletepost", deletepost);
+app.use("/editpost", editpost);
 
 mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology: true})
     .then(()=> app.listen(port, ()=>{

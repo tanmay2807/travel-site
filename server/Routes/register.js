@@ -20,19 +20,19 @@ router.post("/", async (req,res)=>{
     const object = {};
     
     const User = await user.findOne({username: data.username});
-
+    
     if(User){
         const validPass = await bcrypt.compare(data.password, User.password);
         if(validPass){
 
-            const token = jwt.sign({username: User.username, id: User._id},process.env.SECRET_TOKEN, {expiresIn: 120});
+            const token = jwt.sign({username: User.username, id: User._id},process.env.SECRET_TOKEN, {expiresIn: 1200});
             res.send(token);
 
         } else {
-            res.status(400);
+            res.json({msg: "Invalid Password ! Please cross-check"});
         }
     } else {
-        res.status(401);
+        res.json({msg: "Invalid Username ! Please cross-check"});
     }
 
 });
