@@ -2,6 +2,7 @@ import express from 'express';
 import {romantic} from "./../database/schema_romantic.js"
 import {best} from "./../database/schema_best.js"
 import {budget} from "./../database/schema_budget.js"
+import {review} from "./../database/schema_reviews.js"
 
 const router = express.Router();
 
@@ -36,8 +37,18 @@ router.post("/", async (req,res)=>{
                     res.json({msg: "An error occured! Please try again"})
                 }
             })
-        } else{
+        } else if(Budget_delete){
             budget.updateOne(olddata,{$set:newdata}, function(err,pass){
+                if(!err){
+                    console.log("updated");
+                    res.json({msg: "Post has been succesfully updated !"})
+                } else {
+                    console.log(err);
+                    res.json({msg: "An error occured! Please try again"})
+                }
+            })
+        } else {
+            review.updateOne(olddata,{$set:newdata}, function(err,pass){
                 if(!err){
                     console.log("updated");
                     res.json({msg: "Post has been succesfully updated !"})

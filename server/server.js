@@ -14,6 +14,7 @@ import resetpass from "./Routes/resetpass.js";
 import admindata from "./Routes/admindata.js";
 import deletepost from "./Routes/deletepost.js";
 import editpost from "./Routes/editpost.js";
+import reviews from "./Routes/reviews.js";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -32,6 +33,7 @@ app.use("/reset_pass_confirm", resetpass);
 app.use("/admindata", admindata);
 app.use("/deletepost", deletepost);
 app.use("/editpost", editpost);
+app.use("/testimonials", reviews);
 
 mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology: true})
     .then(()=> app.listen(port, ()=>{
