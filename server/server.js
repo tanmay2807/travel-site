@@ -15,6 +15,11 @@ import admindata from "./Routes/admindata.js";
 import deletepost from "./Routes/deletepost.js";
 import editpost from "./Routes/editpost.js";
 import reviews from "./Routes/reviews.js";
+import mailchimp from "./Routes/mailchimp.js";
+import post from "./Routes/post.js";
+import postdata from "./Routes/postdata.js";
+import uniquedata from "./Routes/uniquedata.js";
+import luxurydata from "./Routes/luxurydata.js";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -34,6 +39,11 @@ app.use("/admindata", admindata);
 app.use("/deletepost", deletepost);
 app.use("/editpost", editpost);
 app.use("/testimonials", reviews);
+app.use("/subscribe", mailchimp);
+app.use("/post",post);
+app.use("/postdata", postdata);
+app.use("/uniquedata", uniquedata);
+app.use("/luxurydata", luxurydata);
 
 mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology: true})
     .then(()=> app.listen(port, ()=>{

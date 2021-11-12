@@ -25,7 +25,7 @@ router.post("/", async (req,res)=>{
         const validPass = await bcrypt.compare(data.password, User.password);
         if(validPass){
 
-            const token = jwt.sign({username: User.username, id: User._id},process.env.SECRET_TOKEN, {expiresIn: 1200});
+            const token = jwt.sign({username: User.username, id: User._id},process.env.SECRET_TOKEN, {expiresIn: 3600});
             res.send(token);
 
         } else {
